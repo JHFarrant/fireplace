@@ -8,7 +8,7 @@ FIREPLACE_VIDEO_FILE_PATH = "/home/pi/fireplace2.mp4"
 class FireplaceHttpService:
 	name = "fireplace_http_service"
 
-	@http("POST", "/light_fireplace")
+	@http("GET", "/light_fireplace")
 	def light_fireplace(self, request):
 		#
 		subprocess.call(["pgrep omxplayer | xargs kill"],shell=True)
