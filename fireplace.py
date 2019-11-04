@@ -1,8 +1,9 @@
 import json
 import subprocess
 from nameko.web.handlers import http
+from time import sleep
 
-FIREPLACE_VIDEO_FILE_PATH = "/home/pi/fireplace.webm"
+FIREPLACE_VIDEO_FILE_PATH = "/home/pi/fireplace2.mp4"
 
 class FireplaceHttpService:
 	name = "fireplace_http_service"
@@ -11,6 +12,7 @@ class FireplaceHttpService:
 	def light_fireplace(self, request):
 		#
 		subprocess.call(["omxplayer", "--pos","00:00:25", FIREPLACE_VIDEO_FILE_PATH, "&"])
+		sleep(1)
 		subprocess.call(["echo", "'as'", "|", "cec-client", "RPI", "-s", "-d", "1"])
 
 		return json.dumps({"message":"Fireplace lit successfully"})
