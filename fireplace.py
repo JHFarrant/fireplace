@@ -12,7 +12,7 @@ class FireplaceHttpService:
 	def light_fireplace(self, request):
 		#
 		subprocess.call(["pgrep omxplayer | xargs kill"])
-		subprocess.Popen(["omxplayer", "--pos","00:00:25", FIREPLACE_VIDEO_FILE_PATH, "&"], close_fds=True)
+		subprocess.Popen(["omxplayer", "--pos","00:00:25","--crop","0,0,2000,645", FIREPLACE_VIDEO_FILE_PATH, "&"], close_fds=True)
 		sleep(1)
 		subprocess.Popen(["$(\"echo 'as' | cec-client RPI -s -d 1\")"], close_fds=True)
 
