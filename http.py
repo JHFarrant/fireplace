@@ -10,7 +10,7 @@ class HttpService:
 	@http("POST", "/light_fireplace")
 	def light_fireplace(self, request):
 		#
-		subprocess.call(["omxplayer", FIREPLACE_VIDEO_FILE_PATH])
+		subprocess.call(["omxplayer","--pos","00:00:25", FIREPLACE_VIDEO_FILE_PATH, "&"])
 		subprocess.call(["echo 'as' | cec-client RPI -s -d 1"])
 
 		return json.dumps({"message":"Fireplace lit successfully"})
