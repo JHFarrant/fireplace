@@ -11,8 +11,8 @@ class FireplaceHttpService:
 	@http("POST", "/light_fireplace")
 	def light_fireplace(self, request):
 		#
-		subprocess.call(["omxplayer", "--pos","00:00:25", FIREPLACE_VIDEO_FILE_PATH, "&"])
+		subprocess.Popen(["omxplayer", "--pos","00:00:25", FIREPLACE_VIDEO_FILE_PATH, "&"], close_fds=True)
 		sleep(1)
-		subprocess.call(["echo", "'as'", "|", "cec-client", "RPI", "-s", "-d", "1"])
+		subprocess.Popen(["echo", "'as'", "|", "cec-client", "RPI", "-s", "-d", "1"], close_fds=True)
 
 		return json.dumps({"message":"Fireplace lit successfully"})
